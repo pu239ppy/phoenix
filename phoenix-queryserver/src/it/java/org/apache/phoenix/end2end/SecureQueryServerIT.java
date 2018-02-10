@@ -199,9 +199,9 @@ public class SecureQueryServerIT {
             TokenProvider.class.getName());
 
         // Secure Phoenix setup
-        conf.set("phoenix.queryserver.kerberos.http.principal", SPNEGO_PRINCIPAL);
+        conf.set("phoenix.queryserver.kerberos.http.principal", SPNEGO_PRINCIPAL + "@" + KDC.getRealm());
         conf.set("phoenix.queryserver.http.keytab.file", KEYTAB.getAbsolutePath());
-        conf.set("phoenix.queryserver.kerberos.principal", PQS_PRINCIPAL);
+        conf.set("phoenix.queryserver.kerberos.principal", PQS_PRINCIPAL + "@" + KDC.getRealm());
         conf.set("phoenix.queryserver.keytab.file", KEYTAB.getAbsolutePath());
         conf.setBoolean(QueryServices.QUERY_SERVER_DISABLE_KERBEROS_LOGIN, true);
         conf.setInt(QueryServices.QUERY_SERVER_HTTP_PORT_ATTRIB, 0);
